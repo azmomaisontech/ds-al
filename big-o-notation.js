@@ -34,6 +34,10 @@ console.log(`Time Elapsed: ${(t2 - t1) / 1000} seconds.`)
 
 // Log in BIGO is really just log base 2
 
+// Objects are good options when you don't need ordering. O(1)
+// Array adding to the end and removing from the end is 0 (1)
+
+
 
 
 
