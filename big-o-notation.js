@@ -23,6 +23,9 @@ let t2 = Date.now()
 console.log(`Time Elapsed: ${(t2 - t1) / 1000} seconds.`)
 
 
+
+
+
 // Time Complexity
 // Constant don't matter - Convert all Constants to 1
 // Arithmetic operations are constant, same as variable assignment
