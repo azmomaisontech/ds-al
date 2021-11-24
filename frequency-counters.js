@@ -42,8 +42,37 @@ function fSame(arr1, arr2) {
     return true
 }
 
-console.log(fSame([1,2,1], [4, 4, 1]))
+function validAnagrams(str1, str2) {
+    if(str1.length !== str2.length) {
+        return false
+    }
+    let frequencyCount1 = {}
+    let frequencyCount2 = {}
 
-// same ([1,2,3], [4,1,9])
-// same ([1,2,3], [1,9])
-// same ([1,2,1], [4, 4, 1])
+    for(let char of str1){
+        frequencyCount1[char] = (frequencyCount1[char] || 0) + 1
+    }
+    for(let char of str2){
+        frequencyCount2[char] = (frequencyCount2[char] || 0) + 1
+    }
+
+    for(let key in frequencyCount1) {
+        if(!(key in frequencyCount2)) {
+            return false
+        }
+        if((frequencyCount1[key] !== frequencyCount2[key])){
+            return false
+        }
+    }
+    return true
+}
+
+console.log(validAnagrams("texttwisttime", "timetwisttext"))
+
+// validAnagrams(" ", " ")
+// validAnagrams("aaz", "zza")
+// validAnagrams("anagram", "nagaram")
+// validAnagrams("rat", "car")
+// validAnagrams("awesome", "awesom")
+// validAnagrams("qwerty", "qeywrt")
+// validAnagrams("texttwisttime", "timetwisttext")
