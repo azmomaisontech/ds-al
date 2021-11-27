@@ -24,6 +24,24 @@ function buildUp(n, index,  count){
 
 
 // Better Solution
+function maxSubarraySum2(arr, int) {
+    const arrLength = arr.length
+    if(arrLength < int) return null;
+    if(arrLength === 1) return arr;
+    let maxSum = 0;
+    let tempSum = 0;
+    for(let i = 0; i < int; i++) {
+        tempSum += arr[i]
+    }
+
+    for(let j = int; j < arrLength; j++) {
+        tempSum = tempSum - arr[j - int] + arr[j]
+        if(tempSum > maxSum){
+            maxSum = tempSum
+        }
+    }
+    return maxSum
+}
 
 
-console.log(maxSubarraySum([2,6,9,2,1,8,5,6,3], 3))
+console.log(maxSubarraySum2([2,6,9,2,1,8,5,6,3], 3))
