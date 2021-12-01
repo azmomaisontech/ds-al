@@ -48,4 +48,30 @@ function oddValue2(arr) {
     return newArr
 }
 
-console.log(oddValue2([1,2,3,4,5]))
+function power(num, exp) {
+    if(exp === 0) return 1
+
+    return num * power(num, exp - 1)
+}
+
+function factorial(num) {
+    if(num <= 1) return 1
+    return num * factorial(num - 1)
+}
+
+function productOfArray(arr) {
+    let sum = 1;
+    function multiply(newArr) {
+        if(newArr.length <= 0) {
+            return
+        }
+        sum = sum * newArr[0]
+        multiply(newArr.slice(1))
+    }
+    multiply(arr)
+    return sum
+}
+
+
+console.log(productOfArray([1,2,3])) // 6
+console.log(productOfArray([1,2,3,10])) // 60
