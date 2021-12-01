@@ -124,49 +124,63 @@ function maxSubarraySum(arr, count){
 // console.log(maxSubarraySum([2,3],3))
 
 
-function minSubArrayLen(arr, total){
-    const length = arr.length;
-    let sum = 0
-    let count = 0
-   for(let i = 0; i < length; i++) {
-       sum += arr[i]
-       if(sum >= total) {
-           count = i + 1
-       }
-       if(count === 1) {
-           return count
-       }
-   }
-
+function minSubArrayLen(nums, sum){
+    const length = nums.length
+    let total = 0;
+    let minLen = Infinity;
     let start = 0;
-    let end = 0
-    while
-    for(let j = count; j < arr.length; j++) {
-        sum += arr[j - count] + arr[j];
-        if(sum >= 7) {
+    let end = 0;
 
-        }
-
-        if(count === 1) {
-            return count
+    while(start < length) {
+        if(total < sum && end < length) {
+            total += nums[end]
+            end++
+        } else if(total >= sum) {
+            minLen = Math.min(minLen, end - start)
+            total -= nums[start]
+            start++
+        } else {
+            break;
         }
     }
 
-    return count;
+    return minLen === Infinity ? 0 : minLen
 }
 
-
-// console.log(minSubArrayLen([2,3,1,2,4,3], 7))
-// console.log(minSubArrayLen([2,1,6,5,4], 9))
-// console.log(minSubArrayLen([3,1,7,11,2,9,8,21,62,33,19], 52))
-// console.log(minSubArrayLen([1,4,16,22,5,7,8,9,10], 39))
-// console.log(minSubArrayLen([1,4,16,22,5,7,8,9,10], 55))
-// console.log(minSubArrayLen([4,3,3,8,1,2,3], 11))
-// console.log(minSubArrayLen([1,4,16,22,5,7,8,9,10], 95))
-
+console.log(minSubArrayLen([2,3,1,2,4,3], 7))
+console.log(minSubArrayLen([2,1,6,5,4], 9))
+console.log(minSubArrayLen([3,1,7,11,2,9,8,21,62,33,19], 52))
+console.log(minSubArrayLen([1,4,16,22,5,7,8,9,10], 39))
+console.log(minSubArrayLen([1,4,16,22,5,7,8,9,10], 55))
+console.log(minSubArrayLen([4,3,3,8,1,2,3], 11))
+console.log(minSubArrayLen([1,4,16,22,5,7,8,9,10], 95))
 
 
+function findLongestSubstring(str){
+    const length = str.length;
+    let start = 0;
+    let longest = 0;
+    let seen = {}
 
+    for(let i = 0; i < length; i++) {
+        let char = str[i]
+        if(seen[char]) {
+            start = Math.max(start, i + 1)
+        }
+
+        longest = Math.max(longest, i - start + 1)
+        seen[char] = i + 1
+    }
+    return longest
+}
+
+// console.log(findLongestSubstring(""))
+// console.log(findLongestSubstring("rithmschool"))
+// console.log(findLongestSubstring("thisisawesome"))
+// console.log(findLongestSubstring("thecatinthehat"))
+// console.log(findLongestSubstring("bbbbbb"))
+// console.log(findLongestSubstring("longestsubstring"))
+// console.log(findLongestSubstring("thisishowwedoit"))
 
 
 
