@@ -4,6 +4,10 @@ function swap(arr, idx1, idx2) {
     arr[idx2] = temp;
 }
 
+// start at index - 0; go through the entire array,
+// find the element that is smallest in the entire array, icluding index 0, then swap,
+// increment to index - 1; go through entire array, bar index - 0
+
 function selectionSort(arr){
     let minNumIndex = 0;
     let count = 0;
@@ -16,7 +20,6 @@ function selectionSort(arr){
             }
         }
         if(minNumIndex !== newCount) {
-            console.log("here")
             swap(arr, minNumIndex, newCount)
         }
         newCount++
@@ -28,4 +31,4 @@ function selectionSort(arr){
 
 
 console.log(selectionSort([5,39, 12, 3, 2, 5, 1]))
-console.log(selectionSort([34,33,10,19,17]))
+// console.log(selectionSort([34,33,10,19,17]))
