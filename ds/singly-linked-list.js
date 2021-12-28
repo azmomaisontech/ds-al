@@ -69,7 +69,7 @@ class SinglyLinkedList {
         if(!this.head || index < 0 || index >= this.length) return null;
         let counter = 0;
         let current = this.head;
-        while(counter !== index) {
+        while(counter !== index && current.next) {
             current = current.next;
             counter++
         }
@@ -101,11 +101,30 @@ class SinglyLinkedList {
         if(index < 0 || index >= this.length) return undefined;
         if(index === 0) return this.shift();
         if(this.length <= 1) return this.clearList();
-        else if(index === this.length - 1) return this.pop();
-        let beforeItem =  get(index - 1);
-        let afterItem =  get(index + 1);
-        beforeItem.next = afterItem;
+        if(index === this.length - 1) return this.pop();
+        let prevNode =  this.get(index - 1);
+        let removed = prevNode.next;
+        prevNode.next = removed.next;
         this.length--;
+    }
+
+    // 1,2,3,4,5,6
+
+    reverse(){
+        let tempNext = this.head.next;
+        for(let i = 0; i < this.length; i++) {
+          let current = this.get(i)
+           if(!tempNext.next) {
+               tempNext.next = current;
+           } else{
+               let temp = tempNext.next
+               tempNext.next = current;
+               tempNext = temp;
+           }
+        }
+        let tempHead = this.head
+         this.head = this.tail
+        this.tail = this.head;
     }
 
     clearList(){
@@ -121,5 +140,11 @@ list.push(3)
 list.push(4)
 list.push(5)
 list.push(6)
-list.insert(0, "New 1")
+list.reverse()
 console.log(list)
+console.log(list.get(5).val)
+console.log(list.get(4).val)
+console.log(list.get(3).val)
+console.log(list.get(2).val)
+console.log(list.get(1).val)
+console.log(list.get(0).val)
