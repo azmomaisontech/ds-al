@@ -111,20 +111,18 @@ class SinglyLinkedList {
     // 1,2,3,4,5,6
 
     reverse(){
-        let tempNext = this.head.next;
+        let node = this.head;
+        this.head = this.tail;
+        this.tail = node;
+        let prev = null;
+        let next;
         for(let i = 0; i < this.length; i++) {
-          let current = this.get(i)
-           if(!tempNext.next) {
-               tempNext.next = current;
-           } else{
-               let temp = tempNext.next
-               tempNext.next = current;
-               tempNext = temp;
-           }
+            next = node.next;
+            node.next = prev;
+            prev = node;
+            node = next;
         }
-        let tempHead = this.head
-         this.head = this.tail
-        this.tail = this.head;
+        return this
     }
 
     clearList(){
