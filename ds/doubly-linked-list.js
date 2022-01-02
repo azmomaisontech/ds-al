@@ -54,13 +54,6 @@ class DoublyLinkedList {
         this.length--
     }
 
-    1
-    head - 1
-    tail - 1
-
-    head - 0
-    head.next =
-
     unshift(val) {
         let node = new Node(val)
         if(!this.head) {
@@ -75,13 +68,6 @@ class DoublyLinkedList {
         this.length++
     }
 }
-
-// else if(this.length === 1) {
-//     let tail = this.tail;
-//     this.head = node;
-//     head.next = tail;
-//     tail.prev = this.head;
-// }
 
 
 const dList = new DoublyLinkedList()
