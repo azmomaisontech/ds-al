@@ -122,7 +122,6 @@ class DoublyLinkedList {
         removedNode.prev = null;
         this.length--
     }
-
 }
 
 const dList = new DoublyLinkedList()
