@@ -85,6 +85,13 @@ class DoublyLinkedList {
             return current
         }
     }
+
+    set(index, val) {
+        let node = this.get(index)
+        if(!node) return false;
+        node.val = val;
+        return true;
+    }
 }
 
 
@@ -97,6 +104,7 @@ dList.push(5)
 dList.push(6)
 dList.push(7)
 dList.push(8)
-console.log(dList.get(7))
+dList.set(0, "New 1")
+console.log(dList)
 
 
