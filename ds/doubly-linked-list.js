@@ -70,7 +70,7 @@ class DoublyLinkedList {
 
     get(index) {
         if(this.length === 0 || index < 0 || index >= this.length) return null;
-        let mid = Math.ceil(this.length / 2)
+        let mid = this.length / 2
         if(index <= mid) {
             let current = this.head;
             for(let i = 0; i < index; i++) {
