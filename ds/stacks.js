@@ -50,9 +50,9 @@ class Stack {
             this.last = null;
             this.first = null;
         } else {
-            let nextHead = this.last.next
+            let nextLast = this.last.next
             this.last.next = null;
-            this.last = nextHead
+            this.last = nextLast
         }
         return --this.size;
     }
