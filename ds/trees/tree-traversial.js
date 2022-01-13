@@ -21,6 +21,7 @@ class BFS extends BinarySearchTree {
 // 3             8                     20
 
 // DFS = Dept first search
+// PreOrder
 class DFS extends BinarySearchTree {
     traverse() {
         let visited = []
