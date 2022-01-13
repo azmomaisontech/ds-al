@@ -58,6 +58,8 @@ class BinarySearchTree {
     }
 }
 
+module.exports = BinarySearchTree
+
 const tree = new BinarySearchTree()
 tree.insert(10)
 tree.insert(6)
