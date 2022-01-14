@@ -37,7 +37,25 @@ class DFS extends BinarySearchTree {
     }
 }
 
-const tree = new DFS()
+// DFS = Dept first search
+// PostOrder
+class DFSPO extends BinarySearchTree {
+    traverse() {
+        let visited = []
+        if(!this.root) return null;
+        let current = this.root
+        this.helper(current, visited)
+        return visited
+    }
+
+    helper(node, visited){
+        if (node.left) this.helper(node.left, visited)
+        if (node.right) this.helper(node.right, visited)
+        visited.push(node.val)
+    }
+}
+
+const tree = new DFSPO()
 tree.insert(10)
 tree.insert(6)
 tree.insert(15)
