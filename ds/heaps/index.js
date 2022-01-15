@@ -14,14 +14,14 @@ class MaxBinaryHeap {
 
     insert(val) {
         this.values.push(val)
-        this.helper(this.values.length - 1)
+        this.bubbleUp(this.values.length - 1)
     }
 
-    helper(childIndex) {
+    bubbleUp(childIndex) {
         let parentIndex = this.findParentIndex(childIndex)
         if (this.values[parentIndex] > this.values[childIndex] || parentIndex < 0) return;
         this.swap(childIndex, parentIndex)
-        this.helper(parentIndex)
+        this.bubbleUp(parentIndex)
     }
 
     findParentIndex(childIndex) {
