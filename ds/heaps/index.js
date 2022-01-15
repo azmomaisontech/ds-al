@@ -44,6 +44,8 @@ mbh.insert(12)
 mbh.insert(55)
 mbh.insert(34)
 mbh.insert(34)
+mbh.insert(1)
+mbh.insert(199)
 console.log(mbh)
 
 
