@@ -31,13 +31,13 @@ class MaxBinaryHeap {
     }
 
     bubbleDown(parentIndex) {
-        let childIndex = this.findAppropriateChildIndex(parentIndex)
+        let childIndex = this.findLargestChildIndex(parentIndex)
         if(this.values[parentIndex] > this.values[childIndex] || childIndex > this.values.length - 1) return;
         this.swap(parentIndex, childIndex)
         this.bubbleDown(childIndex)
     }
 
-    findAppropriateChildIndex(parentIndex) {
+    findLargestChildIndex(parentIndex) {
         let left = (2 * parentIndex) + 1
         let right = (2 * parentIndex) + 2
         if(this.values[left] > this.values[right]) return left
