@@ -17,11 +17,31 @@ class MaxBinaryHeap {
         this.bubbleUp(this.values.length - 1)
     }
 
+    extractMax() {
+        this.swap(0, this.values.length - 1)
+        this.values.pop()
+        this.bubbleDown(0)
+    }
+
     bubbleUp(childIndex) {
         let parentIndex = this.findParentIndex(childIndex)
         if (this.values[parentIndex] > this.values[childIndex] || parentIndex < 0) return;
         this.swap(childIndex, parentIndex)
         this.bubbleUp(parentIndex)
+    }
+
+    bubbleDown(parentIndex) {
+        let childIndex = this.findAppropriateChildIndex(parentIndex)
+        if(this.values[parentIndex] > this.values[childIndex] || childIndex > this.values.length - 1) return;
+        this.swap(parentIndex, childIndex)
+        this.bubbleDown(childIndex)
+    }
+
+    findAppropriateChildIndex(parentIndex) {
+        let left = (2 * parentIndex) + 1
+        let right = (2 * parentIndex) + 2
+        if(this.values[left] > this.values[right]) return left
+        return right;
     }
 
     findParentIndex(childIndex) {
@@ -36,16 +56,14 @@ class MaxBinaryHeap {
 }
 
 let mbh = new MaxBinaryHeap()
+mbh.insert(41)
 mbh.insert(39)
 mbh.insert(33)
 mbh.insert(18)
 mbh.insert(27)
 mbh.insert(12)
-mbh.insert(55)
-mbh.insert(34)
-mbh.insert(34)
-mbh.insert(1)
-mbh.insert(199)
+console.log(mbh)
+mbh.extractMax()
 console.log(mbh)
 
 
