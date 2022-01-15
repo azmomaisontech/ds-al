@@ -40,7 +40,7 @@ class MaxBinaryHeap {
     findLargestChildIndex(parentIndex) {
         let left = (2 * parentIndex) + 1
         let right = (2 * parentIndex) + 2
-        if(this.values[left] > this.values[right]) return left
+        if(this.values[left] >= this.values[right]) return left
         return right;
     }
 
