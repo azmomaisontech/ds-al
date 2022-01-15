@@ -18,6 +18,7 @@ class MaxBinaryHeap {
     }
 
     extractMax() {
+        if(this.values.length === 0) return
         this.swap(0, this.values.length - 1)
         this.values.pop()
         this.bubbleDown(0)
@@ -40,7 +41,7 @@ class MaxBinaryHeap {
     findLargestChildIndex(parentIndex) {
         let left = (2 * parentIndex) + 1
         let right = (2 * parentIndex) + 2
-        if(this.values[left] >= this.values[right]) return left
+        if(this.values[left] >= this.values[right] || !this.values[right]) return left
         return right;
     }
 
@@ -62,8 +63,19 @@ mbh.insert(33)
 mbh.insert(18)
 mbh.insert(27)
 mbh.insert(12)
+mbh.insert(55)
 console.log(mbh)
 mbh.extractMax()
+mbh.extractMax()
+mbh.extractMax()
+mbh.extractMax()
+mbh.extractMax()
+mbh.extractMax()
+mbh.extractMax()
+// mbh.extractMax()
+// mbh.extractMax()
+// mbh.extractMax()
+// mbh.extractMax()
 console.log(mbh)
 
 
