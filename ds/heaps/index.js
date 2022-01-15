@@ -18,7 +18,7 @@ class MaxBinaryHeap {
     }
 
     extractMax() {
-        if(this.values.length === 0) return
+        if (this.values.length === 0) return
         this.swap(0, this.values.length - 1)
         this.values.pop()
         this.bubbleDown(0)
@@ -33,7 +33,7 @@ class MaxBinaryHeap {
 
     bubbleDown(parentIndex) {
         let childIndex = this.findLargestChildIndex(parentIndex)
-        if(this.values[parentIndex] > this.values[childIndex] || childIndex > this.values.length - 1) return;
+        if (this.values[parentIndex] > this.values[childIndex] || childIndex > this.values.length - 1) return;
         this.swap(parentIndex, childIndex)
         this.bubbleDown(childIndex)
     }
@@ -41,7 +41,7 @@ class MaxBinaryHeap {
     findLargestChildIndex(parentIndex) {
         let left = (2 * parentIndex) + 1
         let right = (2 * parentIndex) + 2
-        if(this.values[left] >= this.values[right] || !this.values[right]) return left
+        if (this.values[left] >= this.values[right] || !this.values[right]) return left
         return right;
     }
 
@@ -54,6 +54,21 @@ class MaxBinaryHeap {
         this.values[idx1] = this.values[idx2]
         this.values[idx2] = temp
     }
+}
+
+class Node {
+    constructor(val, priority) {
+        this.val = val;
+        this.priority = priority
+    }
+
+}
+
+class PriorityQueue {
+    constructor() {
+        this.values = []
+    }
+
 }
 
 let mbh = new MaxBinaryHeap()
@@ -77,7 +92,6 @@ mbh.extractMax()
 // mbh.extractMax()
 // mbh.extractMax()
 console.log(mbh)
-
 
 
 // 41 39 33 18 27 12 55
