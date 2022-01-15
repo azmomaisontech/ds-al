@@ -120,12 +120,9 @@ class PriorityQueue {
 }
 
 let pQ = new PriorityQueue()
-pQ.enqueue("First", 1)
-pQ.enqueue("Second", 0)
-pQ.enqueue("Third", 10)
-pQ.enqueue("Fourth", 2)
-pQ.enqueue("Fifth", 17)
-pQ.enqueue("Sixth", 37)
+pQ.enqueue("Common cold", 1)
+pQ.enqueue("Gunshot wound", 5)
+pQ.enqueue("High fever", 2)
 console.log(pQ.dequeue())
 console.log(pQ.dequeue())
 console.log(pQ.dequeue())
