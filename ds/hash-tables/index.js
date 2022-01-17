@@ -19,10 +19,10 @@ class HashTable {
         this.keyMap = new Array(size)
     }
 
-    set(key) {
-        let index = this.hash(key[0])
+    set(key, value) {
+        let index = this.hash(key)
         this.keyMap[index] = this.keyMap[index] ?? []
-        this.keyMap[index].push(key)
+        this.keyMap[index].push([key, value])
     }
 
     hash(key) {
@@ -38,10 +38,10 @@ class HashTable {
 }
 
 const hashTable = new HashTable()
-hashTable.set(["pink", "#ffc0cb"])
-hashTable.set(["cyan", "#00ffff"])
-hashTable.set(["white", "#ffffff"])
-hashTable.set(["black", "#000000"])
+hashTable.set("pink", "#ffc0cb")
+hashTable.set("cyan", "#00ffff")
+hashTable.set("white", "#ffffff")
+hashTable.set("black", "#000000")
 
 console.log(hashTable)
 
