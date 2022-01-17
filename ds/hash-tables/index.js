@@ -25,6 +25,14 @@ class HashTable {
         this.keyMap[index].push([key, value])
     }
 
+    get(key) {
+        let index = this.hash(key)
+        let map = this.keyMap[index]
+        if(!map) return null;
+        if(map) return map.find(item => item[0] === key)
+
+    }
+
     hash(key) {
         let total = 0;
         const WEIRD_PRIME = 31
@@ -37,13 +45,15 @@ class HashTable {
     }
 }
 
-const hashTable = new HashTable()
+const hashTable = new HashTable(4)
 hashTable.set("pink", "#ffc0cb")
 hashTable.set("cyan", "#00ffff")
 hashTable.set("white", "#ffffff")
 hashTable.set("black", "#000000")
 
-console.log(hashTable)
+console.log(hashTable.get("white"))
+console.log(hashTable.get("pink"))
+console.log(hashTable.get("green"))
 
 
 // Linear Probing
