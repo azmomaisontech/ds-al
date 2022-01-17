@@ -28,9 +28,8 @@ class HashTable {
     get(key) {
         let index = this.hash(key)
         let map = this.keyMap[index]
-        if(!map) return null;
-        if(map) return map.find(item => item[0] === key)
-
+        if(!map) return undefined;
+        if(map) return map.find(item => item[0] === key)[1]
     }
 
     hash(key) {
@@ -45,11 +44,13 @@ class HashTable {
     }
 }
 
-const hashTable = new HashTable(4)
+const hashTable = new HashTable(17)
 hashTable.set("pink", "#ffc0cb")
 hashTable.set("cyan", "#00ffff")
 hashTable.set("white", "#ffffff")
 hashTable.set("black", "#000000")
+hashTable.set("salmon", "#FA8072")
+hashTable.set("maroon", "#800000")
 
 console.log(hashTable.get("white"))
 console.log(hashTable.get("pink"))
