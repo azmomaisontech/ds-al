@@ -7,3 +7,4 @@
 // directed - indicated with direction
 // undirected
 // weighted - value assigned to the edges
+// unweighted - no value
