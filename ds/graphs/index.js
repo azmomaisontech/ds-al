@@ -5,5 +5,5 @@
 // Edge - connections between nodes
 // type of graphs
 // directed - indicated with direction
-// non-directed
+// undirected
 // weighted - value assigned to the edges
