@@ -23,13 +23,22 @@ class Graph {
         }
     }
 
+    removeVertex(vertex1) {
+        if (this.adjacencyList.hasOwnProperty(vertex1)) {
+            this.adjacencyList[vertex1].forEach((vertex) => {
+                this.removeEdge(vertex1, vertex)
+            })
+            delete this.adjacencyList[vertex1]
+        }
+    }
+
 }
 
 const g = new Graph()
 g.addVertex("Tokyo")
 g.addVertex("Lagos")
 g.addVertex("Ghana")
-g.addEdges("Tokyo", "Lagos")
+g.addEdge("Tokyo", "Lagos")
 console.log(g)
-g.removeEdges("Tokyo", "Lagos")
+g.removeVertex( "Lagos")
 console.log(g)
