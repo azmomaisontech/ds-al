@@ -18,7 +18,7 @@
 // D
 // E
 
-// Adjacency Matrix
+// Adjacency List
 // Nested Array and the array index represent the actual vertex
 // [[1,5], [0,2]]
 // if its string or the numbers are versely spaced, use a hashed table
