@@ -18,7 +18,7 @@ class Graph {
 
     removeEdge(vertex1, vertex2) {
         if (this.adjacencyList.hasOwnProperty(vertex1) && this.adjacencyList.hasOwnProperty(vertex2)) {
-            this.adjacencyList[vertex1] =  this.adjacencyList[vertex1].filter(vertex => vertex !== vertex2)
+            this.adjacencyList[vertex1] = this.adjacencyList[vertex1].filter(vertex => vertex !== vertex2)
             this.adjacencyList[vertex2] = this.adjacencyList[vertex2].filter(vertex => vertex !== vertex1)
         }
     }
@@ -32,9 +32,22 @@ class Graph {
         }
     }
 
-    dfs(vertex) {
+    dfsRecursive(vertex) {
         let visited = {}
+        let result = []
+        this.traversal(vertex, result, visited)
+        return result
+    }
 
+    traversal(v, result, visited) {
+        result.push(v)
+        visited[v] = true
+        if (this.adjacencyList[v].length === 0) return;
+        this.adjacencyList[v].forEach(vert => {
+            if (!visited[vert]) {
+                this.traversal(vert, result, visited)
+            }
+        })
     }
 
 }
@@ -53,5 +66,5 @@ g.addEdge("C", "E")
 g.addEdge("D", "F")
 g.addEdge("D", "E")
 g.addEdge("F", "E")
-console.log(g)
+console.log(g.dfsRecursive("A"))
 
