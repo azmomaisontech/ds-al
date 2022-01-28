@@ -45,6 +45,10 @@ class Graph {
         let result = []
         for(let vertex in this.adjacencyList) {
             this.adjacencyList[vertex].forEach(connectedVertex => {
+                if(!visited[vertex]) {
+                    visited[vertex] = true
+                    result.push(vertex)
+                }
                 if(!visited[connectedVertex]) {
                     visited[connectedVertex] = true
                     result.push(connectedVertex)
