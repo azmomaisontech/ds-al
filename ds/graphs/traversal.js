@@ -39,6 +39,21 @@ class Graph {
         return result
     }
 
+
+    dfsInteractive() {
+        let visited = {}
+        let result = []
+        for(let vertex in this.adjacencyList) {
+            this.adjacencyList[vertex].forEach(connectedVertex => {
+                if(!visited[connectedVertex]) {
+                    visited[connectedVertex] = true
+                    result.push(connectedVertex)
+                }
+            })
+        }
+        return result
+    }
+
     traversal(v, result, visited) {
         result.push(v)
         visited[v] = true
@@ -66,5 +81,5 @@ g.addEdge("C", "E")
 g.addEdge("D", "F")
 g.addEdge("D", "E")
 g.addEdge("F", "E")
-console.log(g.dfsRecursive("A"))
+console.log(g.dfsInteractive())
 
