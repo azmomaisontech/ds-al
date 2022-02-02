@@ -33,4 +33,6 @@ g.addNode("C", "F", 4)
 g.addNode("D", "F", 1)
 g.addNode("D", "E", 3)
 g.addNode("E", "F", 1)
+
+// shortest path from A to E is ACDFE
 console.log(g.adjacencyList)
