@@ -18,6 +18,25 @@ class Graph {
     }
 }
 
+class PriorityQueue {
+    constructor() {
+        this.values = []
+    }
+
+    enQueue(node) {
+        this.values.push(node)
+        this.sort()
+    }
+
+    deQueue() {
+        return this.values.pop()
+    }
+
+    sort() {
+        this.values.sort((a, b) => b.priority - a.priority)
+    }
+}
+
 const g = new Graph()
 g.addVertex("A")
 g.addVertex("B")
@@ -35,4 +54,12 @@ g.addNode("D", "E", 3)
 g.addNode("E", "F", 1)
 
 // shortest path from A to E is ACDFE
-console.log(g.adjacencyList)
+
+const p = new PriorityQueue()
+p.enQueue({val: "C", priority: 3})
+p.enQueue({val: "D", priority: 4})
+p.enQueue({val: "A", priority: 1})
+p.enQueue({val: "B", priority: 2})
+p.enQueue({val: "E", priority: 5})
+console.log(p)
+console.log(p.deQueue())
