@@ -30,8 +30,8 @@ class WeightedGraph {
     }
     Dijkstra(start, finish){
         const nodes = new PriorityQueue();
-        const distances = {};
-        const previous = {};
+        const distances = {}; // Shortest distance to a node from A
+        const previous = {}; // Path from the Start
         let path = [] //to return at end
         let smallest;
         //build up initial state
