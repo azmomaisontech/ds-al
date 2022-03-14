@@ -1,65 +1,99 @@
-// Intro
-// Edsger Dijkstra
-// Finding the shortest path between two points
-class Graph {
-    constructor() {
-        this.adjacencyList = {}
-    }
-
-    addVertex(vertex) {
-        if (!this.adjacencyList[vertex]) {
-            this.adjacencyList[vertex] = []
-        }
-    }
-
-    addNode(vertex1, vertex2, weight) {
-        this.adjacencyList[vertex1].push({node: vertex2, weight})
-        this.adjacencyList[vertex2].push({node: vertex1, weight})
-    }
-}
-
 class PriorityQueue {
-    constructor() {
-        this.values = []
+    constructor(){
+        this.values = [];
     }
-
-    enQueue(node) {
-        this.values.push(node)
-        this.sort()
-    }
-
-    deQueue() {
-        return this.values.pop()
-    }
-
+    enqueue(val, priority) {
+        this.values.push({val, priority});
+        this.sort();
+    };
+    dequeue() {
+        return this.values.shift();
+    };
     sort() {
-        this.values.sort((a, b) => b.priority - a.priority)
+        this.values.sort((a, b) => a.priority - b.priority);
+    };
+}
+
+class WeightedGraph {
+    constructor() {
+        this.adjacencyList = {};
+    }
+    addVertex(vertex){
+        if(!this.adjacencyList[vertex]) this.adjacencyList[vertex] = [];
+    }
+    addEdge(vertex1,vertex2, weight){
+        this.adjacencyList[vertex1].push({node:vertex2,weight});
+        this.adjacencyList[vertex2].push({node:vertex1, weight});
+    }
+    Dijkstra(start, finish){
+        const nodes = new PriorityQueue();
+        const distances = {};
+        const previous = {};
+        let path = [] //to return at end
+        let smallest;
+        //build up initial state
+        for(let vertex in this.adjacencyList){
+            if(vertex === start){
+                distances[vertex] = 0;
+                nodes.enqueue(vertex, 0);
+            } else {
+                distances[vertex] = Infinity;
+                nodes.enqueue(vertex, Infinity);
+            }
+            previous[vertex] = null;
+        }
+        // as long as there is something to visit
+        while(nodes.values.length){
+            smallest = nodes.dequeue().val;
+            if(smallest === finish){
+                //WE ARE DONE
+                //BUILD UP PATH TO RETURN AT END
+                while(previous[smallest]){
+                    path.push(smallest);
+                    smallest = previous[smallest];
+                }
+                break;
+            }
+            if(smallest || distances[smallest] !== Infinity){
+                for(let neighbor in this.adjacencyList[smallest]){
+                    //find neighboring node
+                    let nextNode = this.adjacencyList[smallest][neighbor];
+                    //calculate new distance to neighboring node
+                    let candidate = distances[smallest] + nextNode.weight;
+                    let nextNeighbor = nextNode.node;
+                    if(candidate < distances[nextNeighbor]){
+                        //updating new smallest distance to neighbor
+                        distances[nextNeighbor] = candidate;
+                        //updating previous - How we got to neighbor
+                        previous[nextNeighbor] = smallest;
+                        //enqueue in priority queue with new priority
+                        nodes.enqueue(nextNeighbor, candidate);
+                    }
+                }
+            }
+        }
+        return path.concat(smallest).reverse();
     }
 }
 
-const g = new Graph()
-g.addVertex("A")
-g.addVertex("B")
-g.addVertex("C")
-g.addVertex("D")
-g.addVertex("E")
-g.addVertex("F")
-g.addNode("A", "B", 4)
-g.addNode("A", "C", 2)
-g.addNode("B", "E", 3)
-g.addNode("C", "D", 2)
-g.addNode("C", "F", 4)
-g.addNode("D", "F", 1)
-g.addNode("D", "E", 3)
-g.addNode("E", "F", 1)
+var graph = new WeightedGraph()
+graph.addVertex("A");
+graph.addVertex("B");
+graph.addVertex("C");
+graph.addVertex("D");
+graph.addVertex("E");
+graph.addVertex("F");
 
-// shortest path from A to E is ACDFE
+graph.addEdge("A","B", 4);
+graph.addEdge("A","C", 2);
+graph.addEdge("B","E", 3);
+graph.addEdge("C","D", 2);
+graph.addEdge("C","F", 4);
+graph.addEdge("D","E", 3);
+graph.addEdge("D","F", 1);
+graph.addEdge("E","F", 1);
 
-const p = new PriorityQueue()
-p.enQueue({val: "C", priority: 3})
-p.enQueue({val: "D", priority: 4})
-p.enQueue({val: "A", priority: 1})
-p.enQueue({val: "B", priority: 2})
-p.enQueue({val: "E", priority: 5})
-console.log(p)
-console.log(p.deQueue())
+
+graph.Dijkstra("A", "E");
+
+// ["A", "C", "D", "F", "E"]
