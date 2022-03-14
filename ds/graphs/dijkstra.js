@@ -1,3 +1,6 @@
+// Naiva approach to Priority Queue.
+// Go to binary heap for a better
+// implementation of Priority Queue
 class PriorityQueue {
     constructor(){
         this.values = [];
